@@ -1,74 +1,137 @@
 # Computational Sensorimotor Modeling
 
-Compact, reproducible models for trial-by-trial human sensorimotor adaptation.
+[![tests](https://github.com/itoitoakaaka/computational-sensorimotor-modeling/actions/workflows/tests.yml/badge.svg)](https://github.com/itoitoakaaka/computational-sensorimotor-modeling/actions/workflows/tests.yml)
 
-## Why this repository exists
+Interpretable, reproducible models for trial-by-trial human sensorimotor adaptation.
 
-My experimental work focuses on how human sensorimotor control changes across environments. This repository adds a computational layer to that work by expressing repeated behavioral changes with interpretable model parameters.
+This repository is the computational companion to experimental work on how human behavior changes across environments. The public examples are synthetic. The code is structured so de-identified participant-level trial data can be analyzed without changing the modeling API.
 
-The public examples use synthetic data only.
+```mermaid
+flowchart LR
+    A[Trial-level behavior] --> B[State-space model]
+    A --> C[Trial-by-trial update]
+    B --> D[Retention A]
+    B --> E[Error sensitivity B]
+    A --> F[Bayesian estimation]
+    A --> G[Kalman state estimation]
+    D --> H[Condition / group comparison]
+    E --> H
+```
 
-## Models
+## What is implemented
 
-### 1. One-state adaptation model
+- one-state error-based adaptation model
+- trial-by-trial error-to-correction regression
+- bounded parameter fitting
+- parameter-recovery tests
+- grid-based Bayesian posterior for retention and error sensitivity
+- scalar Kalman filtering for latent-state estimation
+- participant-level CSV analysis
+- command-line interface
+- automated tests on Python 3.10-3.12 with GitHub Actions
 
-    x[t+1] = A * x[t] + B * e[t] + w[t]
+## Model
 
-where:
+The core adaptation model is
 
-- A = retention
-- B = error sensitivity / learning rate
-- e[t] = target - observed output
+```text
+x[t+1] = A * x[t] + B * e[t] + w[t]
+y[t]   = x[t] + v[t]
+```
 
-The model can be simulated and fitted to trial-by-trial behavior.
+where `A` is retention, `B` is error sensitivity, `w` is process noise, and `v` is observation noise.
 
-### 2. Trial-by-trial correction model
+The parameters are model-dependent summaries. They are not direct measurements of biological mechanisms.
 
-    correction[t+1] = beta * error[t] + intercept
+## Install
 
-This estimates how strongly the error on one trial predicts the behavioral correction on the next trial.
+```bash
+git clone https://github.com/itoitoakaaka/computational-sensorimotor-modeling.git
+cd computational-sensorimotor-modeling
+python -m venv .venv
+source .venv/bin/activate
+pip install -e ".[dev]"
+```
 
-## Repository structure
+## 30-second demo
 
-- `state_space.py`: simulation and parameter fitting
-- `trial_by_trial.py`: error-to-next-trial correction model
-- `demo.py`: synthetic adaptation and parameter recovery
-- `tests/test_models.py`: unit tests
+Run a synthetic participant-level analysis:
 
-## Setup
+```bash
+sensorimotor-fit
+```
 
-    python3 -m venv .venv
-    source .venv/bin/activate
-    pip install -r requirements.txt
+Generate a synthetic adaptation figure:
 
-## Run
+```bash
+python examples/synthetic_demo.py
+```
 
-    python demo.py
-    python -m unittest discover -s tests -v
+Run the test suite:
 
-## Current scope
+```bash
+pytest
+```
 
-This is intentionally a simple starting point. Natural extensions include:
+## Analyze de-identified trial data
 
-- participant-level parameter estimation
-- Land vs Water comparisons
-- experienced vs non-experienced group comparisons
-- hierarchical Bayesian models
-- Kalman filtering / latent-state estimation
-- multi-rate adaptation models
-- linking latent behavioral states to EEG/SEP measures
+Input CSV:
 
-The goal is not to make a simple model look more sophisticated than it is. The goal is to make assumptions explicit and build toward computational sensorimotor neuroscience.
+```text
+subject_id,condition,group,trial,target,observed
+S01,Land,Experienced,0,0.0,0.03
+S01,Land,Experienced,1,1.0,0.22
+```
 
+Required columns:
 
-## Mathematical extensions
+- `subject_id`
+- `trial`
+- `target`
+- `observed`
 
-The repository now also includes:
+`condition` and `group` are optional. Use anonymous IDs only.
 
-- `MATH_NOTES.md` — a compact guide to latent states, likelihood, Bayes' rule, and Kalman filtering
-- `bayesian_fit.py` — transparent grid-based Bayesian estimation of retention and error sensitivity
-- `kalman_filter.py` — scalar Kalman state estimation
-- `bayesian_demo.py` — posterior means and credible intervals on synthetic adaptation data
-- `kalman_demo.py` — sequential latent-state estimation from noisy observations
+```bash
+sensorimotor-fit --input my_trials.csv --output output/participant_parameters.csv
+```
 
-These additions are intended to connect behavioral modeling code with the mathematical language used in computational neuroscience.
+The output contains participant-level retention, error sensitivity, state-space fit error, trial-by-trial correction gain, and R².
+
+## Repository layout
+
+```text
+src/sensorimotor/
+  state_space.py
+  trial_by_trial.py
+  bayesian.py
+  kalman.py
+  io.py
+  analysis.py
+  cli.py
+examples/
+tests/
+.github/workflows/tests.yml
+MATH_NOTES.md
+EXTERNAL_OUTPUT_PLAN.md
+```
+
+## Reproducibility stance
+
+The repository deliberately separates:
+
+1. **Measured behavior** — trial-level observations.
+2. **Model estimates** — parameters inferred under explicit assumptions.
+3. **Biological interpretation** — claims that require converging experimental evidence.
+
+The tests check parameter recovery, basic Bayesian recovery, Kalman denoising, participant-level fitting, and input-schema handling.
+
+## Current limitation
+
+The public repository does not include participant data. Results shown by the examples are synthetic and are not presented as findings from a human experiment.
+
+The next research step is to apply the same tested pipeline to a de-identified, publishable behavioral dataset and add model comparison and uncertainty analyses.
+
+## Mathematical notes
+
+See [`MATH_NOTES.md`](MATH_NOTES.md) for a compact bridge from trial-by-trial learning to likelihood, Bayesian parameter estimation, and Kalman filtering.
