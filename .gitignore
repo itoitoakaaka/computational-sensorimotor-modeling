@@ -5,3 +5,7 @@ __pycache__/
 .DS_Store
 output/
 data/
+*.egg-info/
+.pytest_cache/
+dist/
+build/
