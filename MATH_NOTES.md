@@ -81,7 +81,7 @@ where
 
 Instead of returning only one best-fitting A and B, Bayesian estimation represents uncertainty over plausible parameter values.
 
-The `bayesian_fit.py` demo uses a simple grid posterior so the calculation remains transparent.
+The `sensorimotor.bayesian` module uses a simple grid posterior so the calculation remains transparent.
 
 ## 6. Kalman filtering
 
@@ -122,7 +122,7 @@ A useful conceptual chain is:
         -> error
         -> state update
 
-This is why state-space and Bayesian models are useful for studying adaptation to changing environments.
+This is why state-space and Bayesian models are useful for studying adaptation to changing environments. The public implementation lives in the installable `sensorimotor` package.
 
 ## 8. What not to overclaim
 
