@@ -59,3 +59,16 @@ This is intentionally a simple starting point. Natural extensions include:
 - linking latent behavioral states to EEG/SEP measures
 
 The goal is not to make a simple model look more sophisticated than it is. The goal is to make assumptions explicit and build toward computational sensorimotor neuroscience.
+
+
+## Mathematical extensions
+
+The repository now also includes:
+
+- `MATH_NOTES.md` — a compact guide to latent states, likelihood, Bayes' rule, and Kalman filtering
+- `bayesian_fit.py` — transparent grid-based Bayesian estimation of retention and error sensitivity
+- `kalman_filter.py` — scalar Kalman state estimation
+- `bayesian_demo.py` — posterior means and credible intervals on synthetic adaptation data
+- `kalman_demo.py` — sequential latent-state estimation from noisy observations
+
+These additions are intended to connect behavioral modeling code with the mathematical language used in computational neuroscience.
