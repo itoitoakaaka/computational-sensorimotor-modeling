@@ -1,5 +1,9 @@
 # Computational Sensorimotor Modeling
 
+<p align="center">
+  <img src="assets/overview.svg" alt="Computational sensorimotor modeling pipeline" width="100%">
+</p>
+
 [![tests](https://github.com/itoitoakaaka/computational-sensorimotor-modeling/actions/workflows/tests.yml/badge.svg)](https://github.com/itoitoakaaka/computational-sensorimotor-modeling/actions/workflows/tests.yml)
 
 Interpretable, reproducible models for trial-by-trial human sensorimotor adaptation.
