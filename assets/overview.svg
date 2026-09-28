@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <rect width="1600" height="900" fill="#ffffff"/>
+  <style>
+    .title{font:700 44px Arial,sans-serif;fill:#0f3b75}
+    .h{font:700 22px Arial,sans-serif;fill:#123e79}
+    .b{font:400 16px Arial,sans-serif;fill:#334155}
+    .s{font:400 14px Arial,sans-serif;fill:#475569}
+    .eq{font:italic 20px Georgia,serif;fill:#0f172a}
+    .panel{fill:#ffffff;stroke:#6da8dd;stroke-width:2}
+    .head{fill:#eaf5ff}
+    .card{fill:#f4f8fc;stroke:#d2e2f0;stroke-width:1.4}
+    .arrow{stroke:#164a7f;stroke-width:4;fill:none;marker-end:url(#a)}
+    .feedback{stroke:#0f3b75;stroke-width:4;fill:none;marker-end:url(#a)}
+    .dash{stroke:#94a3b8;stroke-width:3;fill:none;stroke-dasharray:8 7}
+    .blue{stroke:#0b72d9;stroke-width:4;fill:none}
+    .red{stroke:#ef4444;stroke-width:4;fill:none}
+  </style>
+  <defs>
+    <marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#164a7f"/>
+    </marker>
+  </defs>
+
+  <text x="800" y="60" text-anchor="middle" class="title">Computational Sensorimotor Modeling</text>
+
+  <!-- 1 Task / Environment -->
+  <rect x="15" y="125" width="250" height="520" rx="10" class="panel"/>
+  <rect x="15" y="125" width="250" height="55" rx="10" class="head"/>
+  <text x="35" y="160" class="h">1. Task / Environment</text>
+  <circle cx="55" cy="215" r="10" fill="#fecaca" stroke="#ef4444" stroke-width="2"/>
+  <text x="85" y="220" class="b">Target (T)</text>
+  <path d="M45 255 H75" class="dash"/><path d="M75 255 l-12-8 v16 z" fill="#94a3b8"/>
+  <text x="85" y="250" class="b">Perturbation</text><text x="85" y="272" class="s">(e.g., visuomotor rotation)</text>
+  <rect x="42" y="295" width="24" height="24" rx="5" fill="#dbeafe"/>
+  <text x="85" y="310" class="b">Sensory context</text><text x="85" y="332" class="s">(e.g., visual, proprioceptive)</text>
+
+  <circle cx="70" cy="515" r="9" fill="#64748b"/>
+  <circle cx="190" cy="410" r="12" fill="#fecaca" stroke="#ef4444" stroke-width="2"/>
+  <circle cx="190" cy="410" r="32" fill="#dbeafe" opacity="0.8"/>
+  <path d="M70 515 C105 490 135 445 190 410" class="dash"/>
+  <text x="52" y="548" class="b">Start</text>
+
+  <!-- Arrow -->
+  <path d="M265 385 H315" class="arrow"/>
+  <text x="290" y="410" text-anchor="middle" class="s">motor</text>
+  <text x="290" y="428" text-anchor="middle" class="s">command</text>
+
+  <!-- 2 Observed behavior -->
+  <rect x="315" y="125" width="255" height="520" rx="10" class="panel"/>
+  <rect x="315" y="125" width="255" height="55" rx="10" class="head"/>
+  <text x="335" y="160" class="h">2. Observed Behavior</text>
+  <line x1="340" y1="215" x2="380" y2="215" stroke="#0b72d9" stroke-width="4"/>
+  <text x="392" y="220" class="b">Movement output</text>
+  <line x1="340" y1="247" x2="380" y2="247" class="dash"/>
+  <text x="392" y="252" class="b">Target direction</text>
+  <circle cx="360" cy="470" r="9" fill="#64748b"/>
+  <circle cx="505" cy="385" r="12" fill="#fecaca" stroke="#ef4444" stroke-width="2"/>
+  <circle cx="505" cy="385" r="38" fill="#dbeafe" opacity="0.8"/>
+  <path d="M360 470 C405 440 460 430 505 385" class="blue"/>
+  <path d="M360 470 C420 445 465 405 505 385" class="dash"/>
+  <text x="340" y="505" class="b">Start</text>
+  <rect x="330" y="535" width="225" height="83" rx="10" class="card"/>
+  <text x="442" y="567" text-anchor="middle" class="h">Performance error</text>
+  <text x="442" y="600" text-anchor="middle" class="eq">e<tspan baseline-shift="sub" font-size="14">t</tspan> = y<tspan baseline-shift="sub" font-size="14">t</tspan> − T</text>
+
+  <path d="M570 385 H600" class="arrow"/>
+  <text x="585" y="410" text-anchor="middle" class="s">sensory</text><text x="585" y="428" text-anchor="middle" class="s">feedback</text>
+
+  <!-- 3 Latent state -->
+  <rect x="600" y="125" width="275" height="520" rx="10" class="panel"/>
+  <rect x="600" y="125" width="275" height="55" rx="10" class="head"/>
+  <text x="620" y="153" class="h">3. Latent Internal State</text>
+  <text x="738" y="176" text-anchor="middle" class="s">(State-space / Internal Model)</text>
+
+  <rect x="620" y="205" width="235" height="195" rx="10" fill="#fff" stroke="#60a5fa" stroke-width="2" stroke-dasharray="6 5"/>
+  <text x="738" y="235" text-anchor="middle" class="h">Hidden adaptation state</text>
+  <path d="M670 315 C700 315 705 260 738 260 C770 260 775 315 805 315" class="blue"/>
+  <circle cx="738" cy="342" r="30" fill="#dbeafe"/>
+  <text x="738" y="349" text-anchor="middle" class="h">x<tspan baseline-shift="sub" font-size="14">t</tspan></text>
+  <text x="738" y="380" text-anchor="middle" class="s">(not directly observed)</text>
+
+  <rect x="620" y="420" width="235" height="150" rx="10" class="card"/>
+  <text x="738" y="452" text-anchor="middle" class="h">State-space model</text>
+  <text x="738" y="492" text-anchor="middle" class="eq">x<tspan baseline-shift="sub" font-size="14">t+1</tspan> = A x<tspan baseline-shift="sub" font-size="14">t</tspan> + B e<tspan baseline-shift="sub" font-size="14">t</tspan> + w<tspan baseline-shift="sub" font-size="14">t</tspan></text>
+  <text x="738" y="528" text-anchor="middle" class="eq">y<tspan baseline-shift="sub" font-size="14">t</tspan> = C x<tspan baseline-shift="sub" font-size="14">t</tspan> + v<tspan baseline-shift="sub" font-size="14">t</tspan></text>
+  <text x="635" y="595" class="s">xₜ: latent adaptation state</text>
+  <text x="635" y="616" class="s">eₜ: sensory prediction error</text>
+
+  <path d="M875 385 H905" class="arrow"/>
+
+  <!-- 4 Prediction & error -->
+  <rect x="905" y="125" width="250" height="520" rx="10" class="panel"/>
+  <rect x="905" y="125" width="250" height="55" rx="10" class="head"/>
+  <text x="925" y="150" class="h">4. Prediction &amp; Error</text>
+  <text x="1030" y="176" text-anchor="middle" class="h">Correction</text>
+  <line x1="925" y1="215" x2="965" y2="215" stroke="#0b72d9" stroke-width="3" stroke-dasharray="7 5"/>
+  <text x="980" y="220" class="b">Predicted outcome ŷₜ</text>
+  <line x1="925" y1="247" x2="965" y2="247" stroke="#ef4444" stroke-width="4"/>
+  <text x="980" y="252" class="b">Actual outcome yₜ</text>
+
+  <circle cx="950" cy="470" r="9" fill="#64748b"/>
+  <circle cx="1100" cy="355" r="12" fill="#fecaca" stroke="#ef4444" stroke-width="2"/>
+  <circle cx="1100" cy="355" r="37" fill="#dbeafe" opacity="0.8"/>
+  <path d="M950 470 C1000 425 1050 405 1085 375" stroke="#0b72d9" stroke-width="3" fill="none" stroke-dasharray="7 5"/>
+  <path d="M950 470 C1010 440 1070 415 1100 355" class="red"/>
+  <text x="930" y="505" class="b">Start</text>
+  <rect x="920" y="535" width="220" height="85" rx="10" class="card"/>
+  <text x="1030" y="565" text-anchor="middle" class="h">Sensory prediction error</text>
+  <text x="1030" y="600" text-anchor="middle" class="eq">e<tspan baseline-shift="sub" font-size="14">t</tspan> = y<tspan baseline-shift="sub" font-size="14">t</tspan> − ŷ<tspan baseline-shift="sub" font-size="14">t</tspan></text>
+
+  <path d="M1155 385 H1185" class="arrow"/>
+
+  <!-- 5 Update -->
+  <rect x="1185" y="125" width="230" height="520" rx="10" class="panel"/>
+  <rect x="1185" y="125" width="230" height="55" rx="10" class="head"/>
+  <text x="1205" y="153" class="h">5. State Update</text>
+  <text x="1300" y="176" text-anchor="middle" class="s">(Trial-by-trial adaptation)</text>
+  <rect x="1205" y="225" width="190" height="130" rx="10" class="card"/>
+  <text x="1300" y="260" text-anchor="middle" class="h">Update rule</text>
+  <text x="1300" y="307" text-anchor="middle" class="eq">x<tspan baseline-shift="sub" font-size="14">t+1</tspan> = A x<tspan baseline-shift="sub" font-size="14">t</tspan> + B e<tspan baseline-shift="sub" font-size="14">t</tspan> + w<tspan baseline-shift="sub" font-size="14">t</tspan></text>
+  <path d="M1300 380 V430" class="arrow"/>
+  <rect x="1205" y="455" width="190" height="115" rx="10" fill="#eaf5ff" stroke="#c8dff3"/>
+  <text x="1300" y="493" text-anchor="middle" class="h">Adaptation</text>
+  <text x="1300" y="525" text-anchor="middle" class="b">Update internal state</text>
+  <text x="1300" y="548" text-anchor="middle" class="b">based on prediction error</text>
+
+  <path d="M1415 385 H1445" class="arrow"/>
+
+  <!-- 6 Next trial -->
+  <rect x="1445" y="125" width="140" height="520" rx="10" class="panel"/>
+  <rect x="1445" y="125" width="140" height="55" rx="10" class="head"/>
+  <text x="1515" y="160" text-anchor="middle" class="h">6. Next Trial</text>
+  <line x1="1465" y1="215" x2="1500" y2="215" stroke="#0b72d9" stroke-width="4"/>
+  <text x="1510" y="220" class="s">Improved</text>
+  <line x1="1465" y1="245" x2="1500" y2="245" class="dash"/>
+  <text x="1510" y="250" class="s">Previous</text>
+  <circle cx="1475" cy="470" r="9" fill="#64748b"/>
+  <circle cx="1565" cy="370" r="11" fill="#fecaca" stroke="#ef4444" stroke-width="2"/>
+  <circle cx="1565" cy="370" r="32" fill="#dbeafe" opacity="0.8"/>
+  <path d="M1475 470 C1505 445 1530 420 1565 370" class="blue"/>
+  <path d="M1475 470 C1510 440 1535 400 1565 370" class="dash"/>
+  <text x="1460" y="505" class="b">Start</text>
+  <text x="1515" y="555" text-anchor="middle" class="b">Reduced error</text>
+  <text x="1515" y="580" text-anchor="middle" class="b">on next trial</text>
+  <text x="1515" y="615" text-anchor="middle" class="eq">e<tspan baseline-shift="sub" font-size="14">t+1</tspan> &lt; e<tspan baseline-shift="sub" font-size="14">t</tspan></text>
+
+  <!-- Feedback loop -->
+  <path d="M1030 645 V720 H1300 V645" class="feedback"/>
+  <path d="M450 645 V720 H738 V645" class="feedback"/>
+  <text x="875" y="755" text-anchor="middle" class="h">Feedback: behavior and prediction error inform internal state</text>
+
+  <rect x="360" y="790" width="880" height="65" rx="16" fill="#eaf5ff"/>
+  <text x="800" y="832" text-anchor="middle" class="h">Goal: infer hidden adaptation states and explain trial-by-trial behavior.</text>
+</svg>
